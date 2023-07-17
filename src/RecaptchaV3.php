@@ -114,7 +114,7 @@ class RecaptchaV3
     /**
      * @param $action
      */
-   public function field($action, $name = 'recapcha', $livewire_model= 'recapcha')
+   public function field($action, $name = 'recaptcha', $livewire_model= 'recaptcha')
     {
         $fieldId = uniqid($name . '-', false);
         $html = '<input type="hidden" name="' . $name . '" wire:model="'.$livewire_model.'" id="' . $fieldId . '">';
