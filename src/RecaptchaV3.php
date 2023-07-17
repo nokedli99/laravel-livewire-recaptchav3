@@ -114,10 +114,10 @@ class RecaptchaV3
     /**
      * @param $action
      */
-    public function field($action, $name = 'g-recaptcha-response')
+   public function field($action, $name = 'recapcha', $livewire_model= 'recapcha')
     {
         $fieldId = uniqid($name . '-', false);
-        $html = '<input type="hidden" name="' . $name . '" id="' . $fieldId . '">';
+        $html = '<input type="hidden" name="' . $name . '" wire:model="'.$livewire_model.'" id="' . $fieldId . '">';
         $html .= "<script>
   grecaptcha.ready(function() {
       grecaptcha.execute('" . $this->sitekey . "', {action: '" . $action . "'}).then(function(token) {
