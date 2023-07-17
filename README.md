@@ -1,4 +1,4 @@
-# Laravel Recaptcha V3
+# Laravel Recaptcha V3 - Livewire Extension
 
 
 <p align="center">
@@ -9,13 +9,18 @@
 </p>
 
 Laravel package for Google's [Recaptcha V3](https://developers.google.com/recaptcha/docs/v3). This is a lightweight package which focuses on the backend validation of Recaptcha V3 captchas.
+## New in this Fork
+
+This fork extends the original `josiasmontag/laravel-recaptchav3` package by adding support for Laravel Livewire. It introduces a new function to generate a recaptcha field that can be used with Livewire.
+
+Here's how you can use it in your Livewire component's view:
 
 ## Installation
 
 
 To get started, use Composer to add the package to your project's dependencies:
 
-    composer require josiasmontag/laravel-recaptchav3
+    composer require nokedli99/laravel-livewire/recaptchav3
 
 
 Add `RECAPTCHAV3_SITEKEY` and `RECAPTCHAV3_SECRET` to your `.env` file. (You can get them [here](https://www.google.com/recaptcha/admin#list))
@@ -42,13 +47,13 @@ Recaptcha v3 works best when it is loaded on every page to get the most context 
 
 #### Forms
 
-``RecaptchaV3::field($action, $name='g-recaptcha-response')`` creates an invisible input field that gets filled with a Recaptcha token on load.
+``RecaptchaV3::field($action, $name='g-recaptcha-response', $livewire_model='recaptcha')`` creates an invisible input field that gets filled with a Recaptcha token on load.
 
 
 ```html
-<form method="post" action="/register">
-    {!! RecaptchaV3::field('register') !!}
-    <input type="submit" value="Register"></input>
+<form method="post" action="/contactform">
+    {!! RecaptchaV3::field('contactform','recaptcha','recaptcha') !!}
+    <input type="submit" value="Submit"></input>
 </form>
 
 ```
@@ -59,7 +64,7 @@ Add the `recaptchav3` validator to the rules array. The rule accepts two paramet
 
 ```php
 $validate = Validator::make(Input::all(), [
-	'g-recaptcha-response' => 'required|recaptchav3:register,0.5'
+	'recaptcha' => 'required|recaptchav3:register,0.5'
 ]);
 ```
 
@@ -71,7 +76,7 @@ Alternatively, you can get the score and take variable action:
 // Import the facade class
 use Lunaweb\RecaptchaV3\Facades\RecaptchaV3;
 //  RecaptchaV3::verify($token, $action)
-$score = RecaptchaV3::verify($request->get('g-recaptcha-response'), 'register')
+$score = RecaptchaV3::verify($request->get('recaptcha'), 'contactform')
 if($score > 0.7) {
     // go
 } elseif($score > 0.3) {
@@ -87,7 +92,7 @@ Add the following values to the `custom` array in the `validation` language file
 
 ```php
 'custom' => [
-    'g-recaptcha-response' => [
+    'recaptcha' => [
         'recaptchav3' => 'Captcha error message',
     ],
 ],
