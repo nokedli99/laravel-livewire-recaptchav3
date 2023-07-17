@@ -14,7 +14,14 @@ Laravel package for Google's [Recaptcha V3](https://developers.google.com/recapt
 This fork extends the original `josiasmontag/laravel-recaptchav3` package by adding support for Laravel Livewire. It introduces a new function to generate a recaptcha field that can be used with Livewire.
 
 Here's how you can use it in your Livewire component's view:
+```html
+<form method="post" action="/contactform">
+    {!! RecaptchaV3::field('contactform','recaptcha','recaptcha') !!}
+    <input type="submit" value="Submit"></input>
+</form>
 
+```
+ 
 ## Installation
 
 
@@ -64,7 +71,7 @@ Add the `recaptchav3` validator to the rules array. The rule accepts two paramet
 
 ```php
 $validate = Validator::make(Input::all(), [
-	'recaptcha' => 'required|recaptchav3:register,0.5'
+	'recaptcha' => 'required|recaptchav3:recaptcha,0.5'
 ]);
 ```
 
