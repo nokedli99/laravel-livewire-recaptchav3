@@ -47,7 +47,7 @@ Recaptcha v3 works best when it is loaded on every page to get the most context 
 
 #### Forms
 
-``RecaptchaV3::field($action, $name='g-recaptcha-response', $livewire_model='recaptcha')`` creates an invisible input field that gets filled with a Recaptcha token on load.
+``RecaptchaV3::field($action, $name='recaptcha', $livewire_model='recaptcha')`` creates an invisible input field that gets filled with a Recaptcha token on load.
 
 
 ```html
