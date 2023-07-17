@@ -27,7 +27,7 @@ Here's how you can use it in your Livewire component's view:
 
 To get started, use Composer to add the package to your project's dependencies:
 
-    composer require nokedli99/laravel-livewire/recaptchav3
+    composer require nokedli99/laravel-livewire-recaptchav3
 
 
 Add `RECAPTCHAV3_SITEKEY` and `RECAPTCHAV3_SECRET` to your `.env` file. (You can get them [here](https://www.google.com/recaptcha/admin#list))
